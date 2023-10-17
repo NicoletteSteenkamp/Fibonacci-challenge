@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fibonacci Number Generator</title>
+</head>
+
+<body>
+  <h1>Fibonacci Number Generator</h1>
+  <form id="fibonacci-form">
+    <label for="n">Enter the value of n:</label>
+    <input type="number" id="n" required>
+    <button type="button" onclick="generateAndDisplayFibonacci()">Generate Fibonacci Numbers</button>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    function generateFibonacci(num) {
+      let fibonacci = [0, 1];
+
+      for (let i = 2; i < num; i++) {
+        let sum = fibonacci[i - 1] + fibonacci[i - 2];
+        fibonacci.push(sum);
+      }
+
+      return fibonacci;
+    }
+
+    function generateAndDisplayFibonacci() {
+      const n = parseInt(document.getElementById("n").value);
+      const resultElement = document.getElementById("result");
+
+      if (!isNaN(n) && n >= 0) {
+        const fibonacciNumbers = generateFibonacci(n);
+        resultElement.textContent = `The first ${n} Fibonacci numbers are: ${fibonacciNumbers.join(', ')}`;
+      } else {
+        resultElement.textContent = "Please enter a valid non-negative number.";
+      }
+    }
+  </script>
+</body>
+
+</html>
